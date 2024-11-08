@@ -18,7 +18,7 @@ namespace Agile201_GroupProject1
             InitializeComponent();
         }
 
-        private void DisplayForm_Load(object sender, EventArgs e)
+        private void DisplayProductForm_Load(object sender, EventArgs e)
         {
             if (File.Exists("product.txt"))
             {

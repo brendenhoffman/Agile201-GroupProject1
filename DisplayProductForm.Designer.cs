@@ -69,7 +69,7 @@
             printButton.Name = "printButton";
             printButton.Size = new Size(75, 23);
             printButton.TabIndex = 3;
-            printButton.Text = "button2";
+            printButton.Text = "&Print";
             printButton.UseVisualStyleBackColor = true;
             printButton.Click += printButton_Click;
             // 
