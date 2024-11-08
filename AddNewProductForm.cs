@@ -12,6 +12,7 @@ namespace Agile201_GroupProject1
 {
     public partial class AddNewProductForm : Form
     {
+        List<Product> products = new List<Product>();
         public AddNewProductForm()
         {
             InitializeComponent();
@@ -19,22 +20,77 @@ namespace Agile201_GroupProject1
 
         private void saveButton_Click(object sender, EventArgs e)
         {
-
+            using StreamWriter sw = File.AppendText("product.txt");
+            decimal price;
+            int onHand = 0;
+            if (string.IsNullOrEmpty(idTextBox.Text) || (products.Find(x => x.ProductId == idTextBox.Text) != null))
+            {
+                MessageBox.Show("ID is already used.");
+                idTextBox.Focus();
+                idTextBox.SelectAll();
+            }
+            else if (string.IsNullOrEmpty(nameTextBox.Text))
+            {
+                MessageBox.Show("Product name cannot be empty");
+                nameTextBox.Focus();
+            }
+            else if (string.IsNullOrEmpty(descriptionTextBox.Text))
+            {
+                MessageBox.Show("Description cannot be empty");
+                descriptionTextBox.Focus();
+            }
+            else if (!decimal.TryParse(priceTextBox.Text, out price) || price < 0)
+            {
+                MessageBox.Show("Price is required and must be a number.");
+                priceTextBox.Focus();
+                priceTextBox.SelectAll();
+            }
+            else if (!string.IsNullOrEmpty(quantityTextBox.Text) && !int.TryParse(quantityTextBox.Text, out onHand) || onHand < 0)
+            {
+                MessageBox.Show("Quantity must be a number or empty");
+                quantityTextBox.Focus();
+                quantityTextBox.SelectAll();
+            }
+            else
+            {
+                Product product = new Product(idTextBox.Text, nameTextBox.Text, descriptionTextBox.Text, price, onHand);
+                sw.WriteLine(product);
+                MessageBox.Show("Record saved.");
+                clearButton.PerformClick();
+            }
         }
 
         private void clearButton_Click(object sender, EventArgs e)
         {
-
+            idTextBox.Clear();
+            nameTextBox.Clear();
+            descriptionTextBox.Clear();
+            priceTextBox.Clear();
+            quantityTextBox.Clear();
+            idTextBox.Focus();
         }
 
         private void closeButton_Click(object sender, EventArgs e)
         {
-
+            Close();
         }
 
         private void AddNewProductForm_Load(object sender, EventArgs e)
         {
-
+            if (File.Exists("product.txt"))
+            {
+                using StreamReader sr = new StreamReader("product.txt");
+                string id;
+                while ((id = sr.ReadLine()) != null)
+                {
+                    Product p = new Product(id, sr.ReadLine(), sr.ReadLine(), decimal.Parse(sr.ReadLine()), int.Parse(sr.ReadLine()));
+                    products.Add(p);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Missing product.txt file.");
+            }
         }
     }
 }
