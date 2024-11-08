@@ -47,6 +47,7 @@
             // inventoryListBox
             // 
             inventoryListBox.FormattingEnabled = true;
+            inventoryListBox.HorizontalScrollbar = true;
             inventoryListBox.ItemHeight = 15;
             inventoryListBox.Location = new Point(33, 69);
             inventoryListBox.Name = "inventoryListBox";
