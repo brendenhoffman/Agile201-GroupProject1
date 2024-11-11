@@ -29,16 +29,16 @@
         private void InitializeComponent()
         {
             groupBox1 = new GroupBox();
+            unitsTextBox = new TextBox();
+            idTextBox = new TextBox();
+            label3 = new Label();
+            label2 = new Label();
             label1 = new Label();
             orderListBox = new ListBox();
             addToOrderButton = new Button();
             readyToPayButton = new Button();
             printButton = new Button();
             saveAndCloseButton = new Button();
-            label2 = new Label();
-            label3 = new Label();
-            idTextBox = new TextBox();
-            unitsTextBox = new TextBox();
             printDocument1 = new System.Drawing.Printing.PrintDocument();
             groupBox1.SuspendLayout();
             SuspendLayout();
@@ -55,6 +55,38 @@
             groupBox1.TabIndex = 0;
             groupBox1.TabStop = false;
             groupBox1.Text = "Scan barcode or enter product id";
+            // 
+            // unitsTextBox
+            // 
+            unitsTextBox.Location = new Point(160, 74);
+            unitsTextBox.Name = "unitsTextBox";
+            unitsTextBox.Size = new Size(67, 23);
+            unitsTextBox.TabIndex = 3;
+            // 
+            // idTextBox
+            // 
+            idTextBox.Location = new Point(160, 31);
+            idTextBox.Name = "idTextBox";
+            idTextBox.Size = new Size(182, 23);
+            idTextBox.TabIndex = 2;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(45, 77);
+            label3.Name = "label3";
+            label3.Size = new Size(63, 15);
+            label3.TabIndex = 1;
+            label3.Text = "Units Sold:";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(42, 34);
+            label2.Name = "label2";
+            label2.Size = new Size(66, 15);
+            label2.TabIndex = 0;
+            label2.Text = "Product ID:";
             // 
             // label1
             // 
@@ -82,6 +114,7 @@
             addToOrderButton.TabIndex = 3;
             addToOrderButton.Text = "&Add to Order";
             addToOrderButton.UseVisualStyleBackColor = true;
+            addToOrderButton.Click += addToOrderButton_Click;
             // 
             // readyToPayButton
             // 
@@ -91,6 +124,7 @@
             readyToPayButton.TabIndex = 4;
             readyToPayButton.Text = "&Ready to Pay";
             readyToPayButton.UseVisualStyleBackColor = true;
+            readyToPayButton.Click += readyToPayButton_Click;
             // 
             // printButton
             // 
@@ -100,6 +134,7 @@
             printButton.TabIndex = 5;
             printButton.Text = "&Print Reciept";
             printButton.UseVisualStyleBackColor = true;
+            printButton.Click += printButton_Click;
             // 
             // saveAndCloseButton
             // 
@@ -110,38 +145,6 @@
             saveAndCloseButton.Text = "&Save && Close";
             saveAndCloseButton.UseVisualStyleBackColor = true;
             saveAndCloseButton.Click += saveAndCloseButton_Click;
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Location = new Point(42, 34);
-            label2.Name = "label2";
-            label2.Size = new Size(66, 15);
-            label2.TabIndex = 0;
-            label2.Text = "Product ID:";
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Location = new Point(45, 77);
-            label3.Name = "label3";
-            label3.Size = new Size(63, 15);
-            label3.TabIndex = 1;
-            label3.Text = "Units Sold:";
-            // 
-            // idTextBox
-            // 
-            idTextBox.Location = new Point(160, 31);
-            idTextBox.Name = "idTextBox";
-            idTextBox.Size = new Size(182, 23);
-            idTextBox.TabIndex = 2;
-            // 
-            // unitsTextBox
-            // 
-            unitsTextBox.Location = new Point(160, 74);
-            unitsTextBox.Name = "unitsTextBox";
-            unitsTextBox.Size = new Size(67, 23);
-            unitsTextBox.TabIndex = 3;
             // 
             // CheckOutForm
             // 
@@ -157,6 +160,7 @@
             Controls.Add(groupBox1);
             Name = "CheckOutForm";
             Text = "Check Out Form";
+            Load += CheckOutForm_Load;
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             ResumeLayout(false);
